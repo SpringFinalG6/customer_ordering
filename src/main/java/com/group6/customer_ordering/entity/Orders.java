@@ -12,14 +12,11 @@ public class Orders extends BaseEntity {
     @Column(insertable = false, updatable = false, nullable = false)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customers customers;
+
     @OneToMany(mappedBy = "orders")
     Set<Order_detail> order_detailSet;
-
-//    @ManyToMany
-//    @JoinTable(name = "tb_order_detail",
-//            joinColumns = {@JoinColumn(name = "order_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "product_id")}
-//    )
-//    private List<Products> productsList;
 
 }
