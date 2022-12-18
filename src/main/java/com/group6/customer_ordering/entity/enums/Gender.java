@@ -1,4 +1,4 @@
-package com.group6.customer_ordering.enums;
+package com.group6.customer_ordering.entity.enums;
 
 public enum Gender {
 

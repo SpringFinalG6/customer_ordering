@@ -1,9 +1,8 @@
 package com.group6.customer_ordering.entity;
 
-import com.group6.customer_ordering.enums.Gender;
+import com.group6.customer_ordering.entity.enums.Gender;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
