@@ -1,11 +1,13 @@
 package com.group6.customer_ordering.entity;
 
 import com.group6.customer_ordering.enums.Gender;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "tb_user")
 public class Customers extends BaseEntity {
     @Id
