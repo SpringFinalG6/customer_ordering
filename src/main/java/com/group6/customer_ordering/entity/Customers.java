@@ -1,16 +1,14 @@
 package com.group6.customer_ordering.entity;
 
-import com.group6.customer_ordering.entity.enums.Gender;
 
+import com.group6.customer_ordering.entity.enums.Gender;
+import lombok.Data;
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "tb_user")
 public class Customers extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = false, updatable = false, nullable = false)
-    private long id;
 
     @Column(name = "username" , length = 50, nullable = false)
     private String username;

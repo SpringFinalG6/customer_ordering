@@ -8,11 +8,6 @@ import java.util.Set;
 @Table(name = "tb_product")
 public class Products extends BaseEntity {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(insertable = false, updatable = false, nullable = false)
-        private Long id;
-
         @Column(name = "name" , length = 30, nullable = false, unique = true)
         private String name;
 
@@ -21,12 +16,5 @@ public class Products extends BaseEntity {
 
         @OneToMany(mappedBy = "products")
         Set<Order_detail> order_detailSet;
-
-//        @ManyToMany
-//        @JoinTable(name = "tb_order_detail",
-//                joinColumns = {@JoinColumn(name = "product_id")},
-//                inverseJoinColumns = {@JoinColumn(name = "order_id")}
-//        )
-//        private List<Orders> ordersList;
 
 }
