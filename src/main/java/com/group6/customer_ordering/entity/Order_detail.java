@@ -5,12 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_order_detail")
-public class Order_detail {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = false, updatable = false, nullable = false)
-    private Long id;
+public class Order_detail extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "product_id")

@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Products, Long> {
 
-    List<Products> findNameContainIgnoreCase(String username);
-
 }

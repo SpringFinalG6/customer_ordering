@@ -20,7 +20,6 @@ import java.util.List;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -29,11 +28,6 @@ public class ProductServiceImpl implements ProductService {
         Page<Products> product = productRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
         pagination.setTotalCounts(product.getTotalElements());
         return product.getContent() ;
-    }
-
-    @Override
-    public List<Products> findNameContainIgnoreCase(String name) {
-        return productRepository.findNameContainIgnoreCase(name);
     }
 
     @Override

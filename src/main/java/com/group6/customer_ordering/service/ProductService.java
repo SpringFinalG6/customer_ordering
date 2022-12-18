@@ -9,8 +9,6 @@ public interface ProductService {
 
     List<Products> findAll(Pagination pagination);
 
-    List<Products> findNameContainIgnoreCase(String name);
-
     Products findProductById(Long id);
 
     Products createNewProduct(Products products);
