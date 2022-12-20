@@ -1,13 +1,13 @@
 package com.group6.customer_ordering.service;
 
 import com.group6.customer_ordering.entity.Order_detail;
-import com.group6.customer_ordering.payload.Pagination;
+import com.group6.customer_ordering.payload.PaginationAddRequest;
 
 import java.util.List;
 
 public interface OrderDetailService {
 
-    List<Order_detail> findAll(Pagination pagination);
+    List<Order_detail> findAll(PaginationAddRequest pagination);
 
     Order_detail findOrderDetailById(Long id);
 

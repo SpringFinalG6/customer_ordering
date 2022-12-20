@@ -1,7 +1,7 @@
 package com.group6.customer_ordering.service.impl;
 
 import com.group6.customer_ordering.entity.Order_detail;
-import com.group6.customer_ordering.payload.Pagination;
+import com.group6.customer_ordering.payload.PaginationAddRequest;
 import com.group6.customer_ordering.repository.OrderDetailRepository;
 import com.group6.customer_ordering.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     private OrderDetailRepository orderDetailRepository;
 
     @Override
-    public List<Order_detail> findAll(Pagination pagination) {
+    public List<Order_detail> findAll(PaginationAddRequest pagination) {
         Page<Order_detail> order_details = orderDetailRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
         pagination.setTotalCounts(order_details.getTotalElements());
         return order_details.getContent() ;

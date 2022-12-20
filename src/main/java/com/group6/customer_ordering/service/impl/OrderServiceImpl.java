@@ -1,7 +1,9 @@
 package com.group6.customer_ordering.service.impl;
 
+import com.group6.customer_ordering.controller.reponse.Pagination;
 import com.group6.customer_ordering.entity.Orders;
-import com.group6.customer_ordering.payload.Pagination;
+import com.group6.customer_ordering.entity.projection.OrderProjection;
+import com.group6.customer_ordering.payload.PaginationAddRequest;
 import com.group6.customer_ordering.repository.OrderRepository;
 import com.group6.customer_ordering.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public List<Orders> findAll(Pagination pagination) {
+    public List<Orders> findAll(PaginationAddRequest pagination) {
         Page<Orders> order = orderRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
         pagination.setTotalCounts(order.getTotalElements());
         return order.getContent() ;
@@ -46,6 +48,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteById(Long id) {
         this.orderRepository.deleteById(id);
+    }
+
+    @Override
+    public List<OrderProjection> findOrderProjectionByOrderByCreatedAtDesc
+            (Pagination pagination) {
+        Page<OrderProjection> orderProjection = this.orderRepository
+                .findOrderProjectionByOrderByCreatedAtDesc(
+                        PageRequest.of(pagination.getPage(),
+                                pagination.getSize()
+                        ));
+        pagination.setTotalCounts(orderProjection.getTotalElements());
+        return orderProjection.getContent();
     }
 
 }

@@ -1,7 +1,8 @@
 package com.group6.customer_ordering.service.impl;
 
+import com.group6.customer_ordering.controller.reponse.Pagination;
 import com.group6.customer_ordering.entity.Customers;
-import com.group6.customer_ordering.payload.Pagination;
+import com.group6.customer_ordering.entity.projection.CustomerProjection;
 import com.group6.customer_ordering.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,25 +27,17 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public List<Customers> findAll(Pagination pagination) {
-        Page<Customers> customers = customerRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
-        pagination.setTotalCounts(customers.getTotalElements());
-        return customers.getContent() ;
+    public List<CustomerProjection> findAll() {
+        return this.customerRepository.findCustomerProjectionBy();
     }
 
     @Override
-    public List<Customers> findByUsernameContainsIgnoreCase(String username) {
-        return customerRepository.findByUsernameContainsIgnoreCase(username);
+    public Customers findByUsernameContainsIgnoreCase(String username) {
+        return (Customers) customerRepository.findByUsernameContainsIgnoreCase(username);
     }
-
     @Override
     public Customers findCustomerById(Long id) {
         return customerRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Customers findByEmailIgnoreCase(String email) {
-        return customerRepository.findByEmailIgnoreCase(email).orElse(null);
     }
 
     @Override
@@ -62,14 +55,26 @@ public class CustomerServiceImpl implements CustomerService{
         return null;
     }
 
+
     @Override
     public Customers updateExistingCustomer(Customers customers) {
         return customerRepository.save(customers);
     }
 
     @Override
-    public void deleteExistingCustomerById(Long id) {
-        customerRepository.deleteById(id);
+    public void delete(Long id) {
+        this.customerRepository.deleteById(id);
+    }
+    @Override
+    public List<CustomerProjection> findCustomerProjectionByOrderByCreatedAtDesc
+            (Pagination pagination) {
+        Page<CustomerProjection> customerProjection = this.customerRepository
+                .findCustomerProjectionByOrderByCreatedAtDesc(
+                        PageRequest.of(pagination.getPage(),
+                                pagination.getSize()
+                        ));
+        pagination.setTotalCounts(customerProjection.getTotalElements());
+        return customerProjection.getContent();
     }
 
 }

@@ -9,15 +9,15 @@ public class Order_detail extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    Products products;
+    private Products products;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    Orders orders;
+    private Orders orders;
 
     @Column(name = "quantity" , length = 10, nullable = false)
     private int quantity;
 
-    @Column(name = "price" , length = 10, nullable = false)
-    private int price;
+    @Column(name = "price" , length = 8, nullable = false)
+    private float price;
 }

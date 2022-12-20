@@ -16,7 +16,11 @@ public abstract class BaseEntity {
     @Column(insertable = false, updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "created_by", length = 50, updatable = false)
+    @Column(name = "created_at", length = 50, columnDefinition = "TIMESTAMP")
+    @CreatedBy
+    private String createdAt;
+
+    @Column(name = "created_by", length = 50)
     @CreatedBy
     private String createdBy;
 

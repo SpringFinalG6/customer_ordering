@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @ToString
 @AllArgsConstructor
-public class Pagination {
+public class PaginationAddRequest {
 
     @JsonProperty("page")
     private Integer page;
@@ -19,7 +19,7 @@ public class Pagination {
     @JsonProperty("total_counts")
     private Long totalCounts;
 
-    public Pagination() {
+    public PaginationAddRequest() {
         this(1, 15, 0L, 0L);
     }
 

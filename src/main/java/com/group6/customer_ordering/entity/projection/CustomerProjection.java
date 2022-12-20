@@ -6,20 +6,21 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.List;
 
 public interface CustomerProjection {
-
     Long getId();
     String getUsername();
     String getEmail();
     Gender getGender();
+    String getPhone();
+    String getAddress();
 
-    List<ProductProjection> getBookCollections();
-    interface ProductProjection{
+    List<OrderProjection> getOrderCollection();
+    interface OrderProjection{
 
         @Value("#{target.id}")
         Long getId();
-        @Value("#{target.name}")
-        String getName();
+
+        @Value("#{target.createdAt}")
+        String getCreatedAt();
 
     }
-
 }

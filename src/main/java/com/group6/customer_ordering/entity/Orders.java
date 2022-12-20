@@ -1,7 +1,7 @@
 package com.group6.customer_ordering.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -14,5 +14,8 @@ public class Orders extends BaseEntity {
 
     @OneToMany(mappedBy = "orders")
     Set<Order_detail> order_detailSet;
+
+    @Column(name = "order_date" , length = 100, nullable = false)
+    private Date order_date;
 
 }

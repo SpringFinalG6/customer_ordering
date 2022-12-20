@@ -1,9 +1,8 @@
 package com.group6.customer_ordering.service.impl;
 
 
-import com.group6.customer_ordering.entity.Customers;
 import com.group6.customer_ordering.entity.Products;
-import com.group6.customer_ordering.payload.Pagination;
+import com.group6.customer_ordering.payload.PaginationAddRequest;
 import com.group6.customer_ordering.repository.ProductRepository;
 import com.group6.customer_ordering.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Products> findAll(Pagination pagination) {
+    public List<Products> findAll(PaginationAddRequest pagination) {
         Page<Products> product = productRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
         pagination.setTotalCounts(product.getTotalElements());
         return product.getContent() ;

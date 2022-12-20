@@ -1,9 +1,11 @@
 package com.group6.customer_ordering.entity;
 
-
 import com.group6.customer_ordering.entity.enums.Gender;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,4 +27,6 @@ public class Customers extends BaseEntity {
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+//    private List<Orders> ordersCollections = new ArrayList<>();
 }

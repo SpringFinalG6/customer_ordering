@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Product {
+public class ProductAddRequest {
 
     @NotBlank
     @Size(max = 30)
