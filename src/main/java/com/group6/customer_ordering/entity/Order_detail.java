@@ -1,10 +1,13 @@
 package com.group6.customer_ordering.entity;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_order_detail")
+@Data
 public class Order_detail extends BaseEntity{
 
     @ManyToOne
