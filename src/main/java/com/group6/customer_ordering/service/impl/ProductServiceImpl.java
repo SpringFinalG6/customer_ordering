@@ -1,14 +1,13 @@
 package com.group6.customer_ordering.service.impl;
 
 
+import com.group6.customer_ordering.entity.Customers;
 import com.group6.customer_ordering.entity.Products;
-import com.group6.customer_ordering.payload.PaginationAddRequest;
+import com.group6.customer_ordering.entity.projection.ProductProjection;
 import com.group6.customer_ordering.repository.ProductRepository;
 import com.group6.customer_ordering.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,10 +22,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Products> findAll(PaginationAddRequest pagination) {
-        Page<Products> product = productRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
-        pagination.setTotalCounts(product.getTotalElements());
-        return product.getContent() ;
+    public List<ProductProjection> findAll() {
+        return this.productRepository.findProductProjectionBy();
     }
 
     @Override
@@ -35,13 +32,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Products findByNameContainsIgnoreCase(String name) {
+        return (Products) productRepository.findByNameContainsIgnoreCase(name);
+    }
+
+    @Override
     public Products createNewProduct(Products products) {
+
         return this.productRepository.save(products);
     }
 
     @Override
-    public Products updateById(Products products) {
-        return this.productRepository.save(products);
+    public Products updateExistingProduct(Products products) {
+
+        return productRepository.save(products);
     }
 
     @Override

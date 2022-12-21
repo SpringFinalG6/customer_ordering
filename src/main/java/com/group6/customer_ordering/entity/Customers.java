@@ -3,9 +3,6 @@ package com.group6.customer_ordering.entity;
 import com.group6.customer_ordering.entity.enums.Gender;
 import lombok.Data;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Data

@@ -1,10 +1,11 @@
 package com.group6.customer_ordering.entity;
 
+import lombok.Data;
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "tb_product")
 public class Products extends BaseEntity {
 

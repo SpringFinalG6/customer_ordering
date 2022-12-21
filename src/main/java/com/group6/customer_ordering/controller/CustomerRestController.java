@@ -70,7 +70,7 @@ public class CustomerRestController {
     public ApiResponse findCustomerById(@PathVariable Long id){
         Customers customers = this.customerService.findCustomerById(id);
         if(customers == null){
-            return new ApiResponse<>("404", "User with id "+ id +" is not found");
+            return new ApiResponse<>("404", "Customer with id "+ id +" is not found");
         }
         return new ApiResponse<>("200","Successfully", customers);
     }
@@ -79,7 +79,7 @@ public class CustomerRestController {
     public ApiResponse findByUsername(@PathVariable String username){
         Customers customers = this.customerService.findByUsernameContainsIgnoreCase(username);
         if(customers == null){
-            return new ApiResponse<>("404", "User with id "+ username +" is not found");
+            return new ApiResponse<>("404", "Customer with name "+ username +" is not found");
         }
         return new ApiResponse<>("200","Successfully", customers);
     }
@@ -122,10 +122,10 @@ public class CustomerRestController {
     public ApiResponse deleteById(@PathVariable Long id){
         Customers user = this.customerService.findCustomerById(id);
         if(user == null){
-            return new ApiResponse<>("404", "User with id "+ id +" is not found");
+            return new ApiResponse<>("404", "Customer with id "+ id +" is not found");
         }
         this.customerService.delete(id);
-        return new ApiResponse<>("200","User has been deleted.");
+        return new ApiResponse<>("200","Customer has been deleted.");
     }
 
 
