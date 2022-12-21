@@ -1,7 +1,9 @@
 package com.group6.customer_ordering.service;
 
+import com.group6.customer_ordering.entity.Customers;
 import com.group6.customer_ordering.entity.Products;
 import com.group6.customer_ordering.entity.projection.ProductProjection;
+import com.group6.customer_ordering.payload.PaginationAddRequest;
 
 import java.util.List;
 

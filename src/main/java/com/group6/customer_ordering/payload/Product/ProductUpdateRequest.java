@@ -1,5 +1,6 @@
 package com.group6.customer_ordering.payload.Product;
 
+import com.group6.customer_ordering.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductUpdateRequest {
+public class ProductUpdateRequest extends BaseEntity {
 
     private Long id;
     private String name;
