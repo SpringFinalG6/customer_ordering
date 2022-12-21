@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class OrderDetailRestController {
 
-    protected static final String ROOT_URL = "/api/v1/backoffice/order_detail";
+    protected static final String ROOT_URL = "/api/group6/order_detail";
 
     @Autowired
     private OrderDetailService orderDetailService;
