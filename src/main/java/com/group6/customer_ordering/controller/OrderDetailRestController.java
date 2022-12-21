@@ -24,8 +24,8 @@ public class OrderDetailRestController {
     @PostMapping
     public ApiResponse add(@RequestBody OrderDetailAddRequest addRequest){
         Order_detail addOrder = new Order_detail();
-        addOrder.setProducts(addOrder.getProducts());
-        addOrder.setOrders(addOrder.getOrders());
+        addOrder.setProducts(addRequest.getProducts());
+        addOrder.setOrders(addRequest.getOrders());
         addOrder.setQuantity(addRequest.getQuantity());
         addOrder.setPrice(addRequest.getPrice());
         addOrder = this.orderDetailService.add(addOrder);
@@ -60,8 +60,8 @@ public class OrderDetailRestController {
         if(order_detail == null){
             return new ApiResponse<>("404", "Order_detail with id "+ orderDetailUpdateRequest.getId() +" is not found");
         }
-        order_detail.setProducts(order_detail.getProducts());
-        order_detail.setOrders(order_detail.getOrders());
+        order_detail.setProducts(orderDetailUpdateRequest.getProducts());
+        order_detail.setOrders(orderDetailUpdateRequest.getOrders());
         order_detail.setQuantity(orderDetailUpdateRequest.getQuantity());
         order_detail.setPrice(orderDetailUpdateRequest.getPrice());
         this.orderDetailService.update(order_detail);
