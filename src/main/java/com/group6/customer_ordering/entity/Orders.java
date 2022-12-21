@@ -3,8 +3,11 @@ package com.group6.customer_ordering.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
+import lombok.Data;
+
 
 @Entity
+@Data
 @Table(name = "tb_order")
 public class Orders extends BaseEntity {
 
@@ -17,5 +20,6 @@ public class Orders extends BaseEntity {
 
     @Column(name = "order_date" , length = 100, nullable = false)
     private Date order_date;
+
 
 }

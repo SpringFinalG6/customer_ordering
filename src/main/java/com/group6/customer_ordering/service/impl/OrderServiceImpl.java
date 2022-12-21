@@ -3,7 +3,6 @@ package com.group6.customer_ordering.service.impl;
 import com.group6.customer_ordering.controller.reponse.Pagination;
 import com.group6.customer_ordering.entity.Orders;
 import com.group6.customer_ordering.entity.projection.OrderProjection;
-import com.group6.customer_ordering.payload.PaginationAddRequest;
 import com.group6.customer_ordering.repository.OrderRepository;
 import com.group6.customer_ordering.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +23,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public List<Orders> findAll(PaginationAddRequest pagination) {
-        Page<Orders> order = orderRepository.findAll(PageRequest.of(pagination.getPage(), pagination.getSize()));
-        pagination.setTotalCounts(order.getTotalElements());
-        return order.getContent() ;
+    public List<OrderProjection> findAll() {
+        return this.orderRepository.findOrderProjectionBy();
     }
 
     @Override
@@ -38,11 +35,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Orders createNewOrder(Orders order) {
         return this.orderRepository.save(order);
-    }
-
-    @Override
-    public Orders updateById(Orders orders) {
-        return this.orderRepository.save(orders);
     }
 
     @Override

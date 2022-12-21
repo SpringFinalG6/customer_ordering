@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderAddRequest {
 
-    private List<Long> customerIdList;
+    private Long customerId;
     private Date order_date;
 
 }

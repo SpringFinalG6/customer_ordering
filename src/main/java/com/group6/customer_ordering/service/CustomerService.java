@@ -12,8 +12,6 @@ public interface CustomerService {
 
     Customers findCustomerById(Long id);
     Customers createNewCustomer(Customers customer);
-    List<CustomerProjection> findCustomerProjectionByOrderByCreatedAtDesc(Pagination pagination);
-
     Customers findByUsernameContainsIgnoreCase(String username);
 
     Customers updateExistingCustomer(Customers customer);

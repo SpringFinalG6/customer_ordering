@@ -1,12 +1,9 @@
 package com.group6.customer_ordering.service.impl;
 
 import com.group6.customer_ordering.entity.Order_detail;
-import com.group6.customer_ordering.payload.PaginationAddRequest;
 import com.group6.customer_ordering.repository.OrderDetailRepository;
 import com.group6.customer_ordering.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

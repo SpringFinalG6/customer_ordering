@@ -12,9 +12,6 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customers, Long> {
     List<Customers> findByUsernameContainsIgnoreCase(String username);
 
-    Optional<Customers> findByEmailIgnoreCase(String email);
-
     List<CustomerProjection> findCustomerProjectionBy();
 
-    Page<CustomerProjection> findCustomerProjectionByOrderByCreatedAtDesc(PageRequest of);
 }

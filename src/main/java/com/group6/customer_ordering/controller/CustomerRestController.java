@@ -32,34 +32,9 @@ public class CustomerRestController {
         this.orderService = orderService;
     }
 
-    @Operation(summary = "Find Customer By Pagination")
-    @Parameters({
-            @Parameter(in = ParameterIn.QUERY
-                    , description = "Page you want to retrieve (0..N)"
-                    , name = "page"
-                    , content = @Content(schema = @Schema(type = "integer", defaultValue = "0"))),
-            @Parameter(in = ParameterIn.QUERY
-                    , description = "Number of records per page."
-                    , name = "size"
-                    , content = @Content(schema = @Schema(type = "integer", defaultValue = "20")))
-    })
-
-//    @GetMapping("/by-page")
-//    public ApiResponse<List<CustomerProjection>> findCustomerProjectionByOrderByCreatedAtDesc(
-//            @Parameter(hidden = true) Pagination pagination
-//    ){
-//
-//        List<CustomerProjection> customerList =
-//                (List<CustomerProjection>) this.customerService.findCustomerProjectionByOrderByCreatedAtDesc(pagination);
-//        if(customerList.size() == 0){
-//            return new ApiResponse<>("404","No data!");
-//        }
-//        return new ApiResponse<List<CustomerProjection>>("200", "Successfully" , customerList);
-//    }
-
     @GetMapping
     public ApiResponse<List<CustomerProjection>> findAll(){
-        List<CustomerProjection> customerList = (List<CustomerProjection>) this.customerService.findAll();
+        List<CustomerProjection> customerList = this.customerService.findAll();
         if(customerList.size() == 0){
             return new ApiResponse<>("404","No data!");
         }

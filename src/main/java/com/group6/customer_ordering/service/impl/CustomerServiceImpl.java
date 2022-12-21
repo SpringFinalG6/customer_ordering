@@ -65,16 +65,5 @@ public class CustomerServiceImpl implements CustomerService{
     public void delete(Long id) {
         this.customerRepository.deleteById(id);
     }
-    @Override
-    public List<CustomerProjection> findCustomerProjectionByOrderByCreatedAtDesc
-            (Pagination pagination) {
-        Page<CustomerProjection> customerProjection = this.customerRepository
-                .findCustomerProjectionByOrderByCreatedAtDesc(
-                        PageRequest.of(pagination.getPage(),
-                                pagination.getSize()
-                        ));
-        pagination.setTotalCounts(customerProjection.getTotalElements());
-        return customerProjection.getContent();
-    }
 
 }
