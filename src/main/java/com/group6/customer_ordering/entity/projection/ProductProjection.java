@@ -10,16 +10,6 @@ public interface ProductProjection {
     Long getId();
     String getName();
     String getCode();
-    Gender getPrice();
+    float getPrice();
 
-    List<OrderProjection> getOrderCollection();
-    interface OrderProjection{
-
-        @Value("#{target.id}")
-        Long getId();
-
-        @Value("#{target.createdAt}")
-        String getCreatedAt();
-
-    }
 }
