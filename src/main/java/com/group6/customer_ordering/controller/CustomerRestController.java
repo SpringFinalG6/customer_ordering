@@ -43,15 +43,6 @@ public class CustomerRestController {
         return new ApiResponse<>("200","Successfully", customers);
     }
 
-//    @GetMapping("{id}")
-//    public ApiResponse findById(@PathVariable Long id){
-//        User user = this.userService.findById(id);
-//        if(user == null){
-//            return new ApiResponse<>("404", "User with id "+ id +" is not found");
-//        }
-//        return new ApiResponse<>("200","Successfully", user);
-//    }
-
     @GetMapping("{username}")
     public ApiResponse findByUsername(@PathVariable String username){
         Customers customers = this.customerService.findByUsernameContainsIgnoreCase(username);

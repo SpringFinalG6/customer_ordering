@@ -2,7 +2,6 @@ package com.group6.customer_ordering.service.impl;
 
 
 import com.group6.customer_ordering.controller.reponse.Pagination;
-import com.group6.customer_ordering.entity.Customers;
 import com.group6.customer_ordering.entity.Products;
 import com.group6.customer_ordering.entity.projection.ProductProjection;
 import com.group6.customer_ordering.repository.ProductRepository;
