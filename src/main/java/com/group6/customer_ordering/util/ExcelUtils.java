@@ -4,9 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUtils {
 
     public static ByteArrayInputStream customersToExcel(List<Customers> customers) throws IOException {
-        String[] COLUMNs = {"Username", "Phone", "Email", "Address", "Gender", "Created-By", "Updated_By"};
+        String[] COLUMNs = {"Username", "Phone", "Email", "Address", "Gender", "Created_By", "Updated_By", "Created_At", "Updated_At"};
         try(
                 Workbook workbook = new XSSFWorkbook();
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -62,6 +60,8 @@ public class ExcelUtils {
                 row.createCell(4).setCellValue(String.valueOf(customer.getGender()));
                 row.createCell(5).setCellValue(customer.getCreatedBy());
                 row.createCell(6).setCellValue(customer.getUpdatedBy());
+                row.createCell(7).setCellValue(String.valueOf(customer.getCreatedAt()));
+                row.createCell(8).setCellValue(String.valueOf(customer.getUpdatedAt()));
 
             }
 
@@ -110,7 +110,7 @@ public class ExcelUtils {
                     } else if(cellIndex==5) {
                         cust.setCreatedBy(currentCell.getStringCellValue());
                     } else if(cellIndex==6) {
-                        cust.setUpdatedBy(String.valueOf(currentCell.getDateCellValue()));
+                        cust.setUpdatedBy(currentCell.getStringCellValue());
                     }
 
                     cellIndex++;
