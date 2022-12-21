@@ -1,36 +1,29 @@
 package com.group6.customer_ordering.controller;
 
 import com.group6.customer_ordering.controller.reponse.ApiResponse;
-import com.group6.customer_ordering.controller.reponse.Pagination;
 import com.group6.customer_ordering.entity.Customers;
-import com.group6.customer_ordering.entity.Orders;
 import com.group6.customer_ordering.entity.projection.CustomerProjection;
 import com.group6.customer_ordering.payload.Customer.CustomerAddRequest;
+import com.group6.customer_ordering.payload.Customer.CustomerUpdateRequest;
 import com.group6.customer_ordering.service.CustomerService;
 import com.group6.customer_ordering.service.OrderService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/group6/customer")
 public class CustomerRestController {
     private CustomerService customerService;
-    private OrderService orderService;
+//    private OrderService orderService;
 
     @Autowired
     public CustomerRestController(CustomerService customerService, OrderService orderService) {
         this.customerService = customerService;
-        this.orderService = orderService;
+//        this.orderService = orderService;
     }
+
 
     @GetMapping
     public ApiResponse<List<CustomerProjection>> findAll(){
@@ -45,45 +38,37 @@ public class CustomerRestController {
     public ApiResponse findCustomerById(@PathVariable Long id){
         Customers customers = this.customerService.findCustomerById(id);
         if(customers == null){
-            return new ApiResponse<>("404", "Customer with id "+ id +" is not found");
+            return new ApiResponse<>("404", "User with id "+ id +" is not found");
         }
         return new ApiResponse<>("200","Successfully", customers);
     }
+
+//    @GetMapping("{id}")
+//    public ApiResponse findById(@PathVariable Long id){
+//        User user = this.userService.findById(id);
+//        if(user == null){
+//            return new ApiResponse<>("404", "User with id "+ id +" is not found");
+//        }
+//        return new ApiResponse<>("200","Successfully", user);
+//    }
 
     @GetMapping("{username}")
     public ApiResponse findByUsername(@PathVariable String username){
         Customers customers = this.customerService.findByUsernameContainsIgnoreCase(username);
         if(customers == null){
-            return new ApiResponse<>("404", "Customer with name "+ username +" is not found");
+            return new ApiResponse<>("404", "Customer with id "+ username +" is not found");
         }
         return new ApiResponse<>("200","Successfully", customers);
     }
 
-    @GetMapping("{customers}")
-    public ApiResponse updateCustomer(@PathVariable Customers customer) {
-        Customers customers = this.customerService.updateExistingCustomer(customer);
-        if(customers == null){
-            return new ApiResponse<>("404", "Customer "+ customer +" is not found");
-        }
-        return new ApiResponse<>("200","Update customer Successfully", customers);
-    }
-
     @PostMapping
     public ApiResponse createNewCustomer(@RequestBody CustomerAddRequest customerAddRequest){
-
-        List<Orders> orderList = new ArrayList<>();
-        for(Long orderId : customerAddRequest.getOrderIdList()){
-            Orders orders = this.orderService.findOrderById(orderId);
-            if(orders == null){
-                return new ApiResponse("404", "Book with id "+ orderId +" is not found!" );
-            }
-            orderList.add(orders);
-        }
-
         Customers customers = new Customers();
-//        customers.setOrdersCollections(orderList);
+
         customers.setUsername(customerAddRequest.getUsername());
+        customers.setPhone(Integer.parseInt(customerAddRequest.getPhone()));
         customers.setEmail(customerAddRequest.getEmail());
+        customers.setAddress(customerAddRequest.getAddress());
         customers.setGender(customerAddRequest.getGender());
         customers = this.customerService.createNewCustomer(customers);
 
@@ -93,15 +78,29 @@ public class CustomerRestController {
         return new ApiResponse<>("201","Customer has been inserted.");
     }
 
+    @PutMapping
+    public ApiResponse updateCustomer(@PathVariable CustomerUpdateRequest customerUpdateRequest) {
+        Customers customers = this.customerService.findCustomerById(customerUpdateRequest.getId());
+        if(customers == null){
+            return new ApiResponse<>("404", "Customer with id "+ customerUpdateRequest.getId() +" is not found");
+        }
+        customers.setUsername(customerUpdateRequest.getUsername());
+        customers.setPhone(Integer.parseInt(customerUpdateRequest.getPhone()));
+        customers.setEmail(customerUpdateRequest.getEmail());
+        customers.setAddress(customerUpdateRequest.getAddress());
+        customers.setGender(customerUpdateRequest.getGender());
+        this.customerService.updateExistingCustomer(customers);
+        return new ApiResponse<>("201","Customer has been updated.");
+    }
+
     @DeleteMapping("{id}")
     public ApiResponse deleteById(@PathVariable Long id){
         Customers user = this.customerService.findCustomerById(id);
         if(user == null){
-            return new ApiResponse<>("404", "Customer with id "+ id +" is not found");
+            return new ApiResponse<>("404", "User with id "+ id +" is not found");
         }
         this.customerService.delete(id);
-        return new ApiResponse<>("200","Customer has been deleted.");
+        return new ApiResponse<>("200","User has been deleted.");
     }
-
 
 }

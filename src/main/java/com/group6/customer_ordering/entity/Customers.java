@@ -3,7 +3,6 @@ package com.group6.customer_ordering.entity;
 import com.group6.customer_ordering.entity.enums.Gender;
 import lombok.Data;
 import javax.persistence.*;
-
 @Entity
 @Data
 @Table(name = "tb_customer")
@@ -25,5 +24,4 @@ public class Customers extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    private List<Orders> ordersCollections = new ArrayList<>();
 }
