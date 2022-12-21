@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "tb_user")
+@Table(name = "tb_customer")
 public class Customers extends BaseEntity {
 
     @Column(name = "username" , length = 50, nullable = false)
