@@ -1,13 +1,10 @@
 package com.group6.customer_ordering.service.impl;
 
-import com.group6.customer_ordering.controller.reponse.Pagination;
 import com.group6.customer_ordering.entity.Customers;
 import com.group6.customer_ordering.entity.projection.CustomerProjection;
 import com.group6.customer_ordering.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.group6.customer_ordering.service.CustomerService;
 
