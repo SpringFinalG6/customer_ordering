@@ -15,6 +15,8 @@ public interface ProductService {
 
     Products findByNameContainsIgnoreCase(String name);
 
+    Products findProductByCode(String code);
+
     Products createNewProduct(Products products);
 
     Products updateExistingProduct(Products products);

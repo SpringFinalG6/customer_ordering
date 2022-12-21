@@ -69,6 +69,14 @@ public class ProductRestController {
         }
         return new ApiResponse<>("200","Successfully", products);
     }
+    @GetMapping("{code}")
+    public ApiResponse findProductByCode(@PathVariable String code){
+        Products products = this.productService.findProductByCode(code);
+        if(products == null){
+            return new ApiResponse<>("404", "Product with code "+ code +" is not found");
+        }
+        return new ApiResponse<>("200","Successfully", products);
+    }
 
     @GetMapping("{products}")
     public ApiResponse updateProduct(@PathVariable Products product) {
