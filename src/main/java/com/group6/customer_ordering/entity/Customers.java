@@ -13,7 +13,7 @@ public class Customers extends BaseEntity {
     private String username;
 
     @Column(name = "phone" , length = 20, nullable = false, unique = true)
-    private String phone;
+    private int phone;
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;

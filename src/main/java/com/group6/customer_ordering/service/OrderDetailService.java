@@ -7,14 +7,13 @@ import java.util.List;
 
 public interface OrderDetailService {
 
-    List<Order_detail> findAll(PaginationAddRequest pagination);
+    List<Order_detail> findAll();
 
-    Order_detail findOrderDetailById(Long id);
+    Order_detail findById(Long id);
 
-    Order_detail createNewOrderDetail(Order_detail order_detail);
+    Order_detail update(Order_detail order_detail);
 
-    Order_detail updateById(Order_detail order_detail);
+    void delete(Long id);
 
-    void deleteById(Long id);
-
+    Order_detail add(Order_detail addOrder);
 }
